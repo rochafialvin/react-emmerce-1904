@@ -1,0 +1,19 @@
+REACT HOOKS
+
+- Sebuah function yang berfungsi untuk menambah fitur pada komponen berbasis function (state, lifecycle)
+
+useState
+
+
+
+useEffect
+- Akan running setiap kali selesai render (default)
+- Namun dapat diatur hanya akan ada running ketika ada perubahan pada state tertentu saja
+
+
+- instal json-server dan axios : npm install json-server axios'
+- buatlah folder database, lalu di dalamnya dibuat file db.json (ada di slack)
+- buka package.json --> scripts --> tambah property baru yaitu "json-server" --> "json-server --watch src/database/db.json --port 2021"
+- buka terminal baru --> npm run json-server
+- salin kodingan baru
+- refresh
