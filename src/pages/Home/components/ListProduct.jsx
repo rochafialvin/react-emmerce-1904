@@ -1,15 +1,16 @@
 import React from "react";
 
-// jangan lupa buat parameter props untuk mengakses properties
-function ListProduct(props) {
-  console.log("props milik ListProduct");
-  console.log(props);
+import ProductCard from "../../../components/ProductCard";
 
-  return (
-    <div className="col-3">
-      <h1>List Product</h1>
-    </div>
-  );
+// props : products []
+function ListProduct(props) {
+  const renderProducts = () => {
+    return props.products.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ));
+  };
+
+  return <div className=" d-flex flex-wrap col-9 ">{renderProducts()}</div>;
 }
 
 export default ListProduct;
