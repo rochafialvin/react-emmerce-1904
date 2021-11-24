@@ -10,7 +10,7 @@ function Index() {
   // menggantikan componentDidMount
   useEffect(() => {
     axios
-      .get("http://localhost:2021/barang")
+      .get("http://localhost:2021/products")
       .then((res) => {
         setProducts(res.data);
       })
