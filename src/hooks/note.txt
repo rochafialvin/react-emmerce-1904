@@ -1,3 +1,11 @@
 REACT HOOKS
 
 - Sebuah function yang berfungsi untuk menambah fitur pada komponen berbasis function (state, lifecycle)
+
+useState
+
+
+
+useEffect
+- Akan running setiap kali selesai render (default)
+- Namun dapat diatur hanya akan ada running ketika ada perubahan pada state tertentu saja
