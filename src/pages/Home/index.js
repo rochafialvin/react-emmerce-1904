@@ -21,11 +21,16 @@ function Index() {
       });
   }, []);
 
-  const onSearchProducts = (keyword) => {
+  // const onSearchProducts = ({ keyword, category }) => { ... }
+  const onSearchProducts = (obj) => {
+    const { keyword, category } = obj;
     const filterResult = products.filter((product) => {
       const productLowerCase = product.productName.toLowerCase();
       const keywordLowerCase = keyword.toLowerCase();
-      return productLowerCase.includes(keywordLowerCase);
+      return (
+        productLowerCase.includes(keywordLowerCase) &&
+        product.category.includes(category)
+      );
     });
 
     setFilteredProducts(filterResult);
