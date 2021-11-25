@@ -12,14 +12,24 @@ function Index() {
     category: "",
     sortBy: "",
   });
+  const [paginationState, setPaginationState] = useState({
+    page: 1,
+    maxPage: 0,
+    itemsPerPage: 5,
+  });
 
   // menggantikan componentDidMount
   useEffect(() => {
     axios
       .get("http://localhost:2021/products")
       .then((res) => {
-        setProducts(res.data);
-        setFinalProducts(res.data);
+        const { data } = res;
+        setProducts(data);
+        setFinalProducts(data);
+        setPaginationState({
+          ...paginationState,
+          maxPage: Math.ceil(data.length / paginationState.itemsPerPage),
+        });
       })
       .catch((error) => {
         console.log(alert(error.message));
@@ -86,6 +96,8 @@ function Index() {
         <ProductManager
           setFilterState={setFilterState}
           filterState={filterState}
+          paginationState={paginationState}
+          setPaginationState={setPaginationState}
         />
         <ListProduct products={finalProducts} />
       </div>
