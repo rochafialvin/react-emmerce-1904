@@ -14,7 +14,7 @@ function ProductManager(props) {
   };
 
   const handleSortChange = (e) => {
-    props.onSortProducts(e.target.value);
+    setFilterState({ ...filterState, [e.target.name]: e.target.value });
   };
 
   const btnSearchHandler = () => {
