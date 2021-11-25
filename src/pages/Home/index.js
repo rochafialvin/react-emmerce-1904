@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 import ProductManager from "./components/ProductManager";
 import ListProduct from "./components/ListProduct";
@@ -21,7 +21,7 @@ function Index() {
   // menggantikan componentDidMount
   useEffect(() => {
     axios
-      .get("http://localhost:2021/products")
+      .get("/products")
       .then((res) => {
         const { data } = res;
         setProducts(data);

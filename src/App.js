@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.css";
 
 import Home from "./pages/Home";
+import ManageProduct from "./pages/ManageProduct";
 
 function App() {
   return (
     <div>
-      <Home />
+      <ManageProduct />
     </div>
   );
 }
