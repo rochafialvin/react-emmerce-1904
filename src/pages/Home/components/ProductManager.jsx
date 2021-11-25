@@ -2,18 +2,17 @@ import React, { useState } from "react";
 
 // props : onSearchProducts
 function ProductManager(props) {
-  const [keyword, setKeyword] = useState("");
-  const [category, setCategory] = useState("");
+  const [formState, setFormState] = useState({ keyword: "", category: "" });
 
-  const handleKeywordChange = (e) => {
-    setKeyword(e.target.value);
-  };
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
   const btnSearchHandler = () => {
-    props.onSearchProducts({ keyword, category });
+    props.onSearchProducts({
+      keyword: formState.keyword,
+      category: formState.category,
+    });
   };
 
   return (
@@ -25,13 +24,18 @@ function ProductManager(props) {
         <div className="card-body">
           <label>Product Name</label>
           <input
+            name="keyword"
             type="text"
             className="form-control mb-3"
-            onChange={handleKeywordChange}
-            value={keyword}
+            onChange={handleChange}
+            // value={keyword}
           />
           <label>Product Category</label>
-          <select className="form-control" onChange={handleCategoryChange}>
+          <select
+            name="category"
+            className="form-control"
+            onChange={handleChange}
+          >
             <option value="">All Items</option>
             <option value="kaos">Kaos</option>
             <option value="celana">Celana</option>

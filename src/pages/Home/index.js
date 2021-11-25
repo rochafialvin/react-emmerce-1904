@@ -23,7 +23,9 @@ function Index() {
 
   // const onSearchProducts = ({ keyword, category }) => { ... }
   const onSearchProducts = (obj) => {
+    console.log(obj);
     const { keyword, category } = obj;
+    console.log(products);
     const filterResult = products.filter((product) => {
       const productLowerCase = product.productName.toLowerCase();
       const keywordLowerCase = keyword.toLowerCase();
@@ -32,6 +34,8 @@ function Index() {
         product.category.includes(category)
       );
     });
+
+    console.log(filterResult);
 
     setFilteredProducts(filterResult);
   };
