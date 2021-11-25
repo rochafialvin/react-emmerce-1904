@@ -21,6 +21,7 @@ function ProductManager(props) {
 
   const btnSearchHandler = () => {
     setFilterState({ ...filterState, ...formState });
+    setPaginationState({ ...paginationState, page: 1 });
   };
 
   const btnPrevPageHandler = () => {

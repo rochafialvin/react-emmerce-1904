@@ -38,7 +38,7 @@ function Index() {
 
   useEffect(() => {
     createFinalProducts();
-  }, [filterState]);
+  }, [filterState, paginationState.page]);
 
   const compareStringAsc = (a, b) => {
     if (a.productName < b.productName) {
@@ -72,6 +72,14 @@ function Index() {
       );
     });
 
+    const newMaxPage = filterResult.length
+      ? Math.ceil(filterResult.length / paginationState.itemsPerPage)
+      : 1;
+    setPaginationState({
+      ...paginationState,
+      maxPage: newMaxPage,
+    });
+
     switch (sortBy) {
       case "lowPrice":
         filterResult.sort((a, b) => a.price - b.price);
@@ -87,7 +95,13 @@ function Index() {
         break;
     }
 
-    setFinalProducts(filterResult);
+    const { page, itemsPerPage } = paginationState;
+    // Slicing
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const slicedTodos = filterResult.slice(startIndex, endIndex);
+
+    setFinalProducts(slicedTodos);
   };
 
   return (
