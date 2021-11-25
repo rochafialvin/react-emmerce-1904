@@ -52,8 +52,8 @@ function ManageProduct() {
       description,
     };
 
-    // Axios bersifat asynchronous, tanpa perlu menunggu proses ini selesai, javascript akan memproses kode berikutnya
-    // Jika ingin menjalankan kode setelah prosesnya selesai, maka tulis didalam .then() atau .catch()
+    // AXIOS bersifat asynchronous, tanpa perlu menunggu proses ini selesai, javascript akan memproses kode berikutnya
+    // JIKA ingin menjalankan kode setelah prosesnya selesai, maka tulis didalam .then() atau .catch()
     axios
       .post("/products", newProduct)
       .then((res) => {
