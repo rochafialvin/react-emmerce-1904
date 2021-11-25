@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 
-// props : onSearchProducts
+// props : onSearchProducts, onSortProducts
 function ProductManager(props) {
-  const [formState, setFormState] = useState({ keyword: "", category: "" });
+  const [formState, setFormState] = useState({
+    keyword: "",
+    category: "",
+  });
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const handleSortChange = (e) => {
+    // lowPrice
+    props.onSortProducts(e.target.value);
   };
 
   const btnSearchHandler = () => {
@@ -28,7 +36,6 @@ function ProductManager(props) {
             type="text"
             className="form-control mb-3"
             onChange={handleChange}
-            // value={keyword}
           />
           <label>Product Category</label>
           <select
@@ -47,6 +54,25 @@ function ProductManager(props) {
           >
             Search
           </button>
+        </div>
+      </div>
+      <div className="card mt-4">
+        <div className="card-header">
+          <strong>Sort Products</strong>
+        </div>
+        <div className="card-body">
+          <label className="mb-2">Sort by</label>
+          <select
+            name="sortBy"
+            className="form-control"
+            onChange={handleSortChange}
+          >
+            <option value="">Default</option>
+            <option value="lowPrice">Lowest Price</option>
+            <option value="highPrice">Highest Price</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+          </select>
         </div>
       </div>
     </div>
