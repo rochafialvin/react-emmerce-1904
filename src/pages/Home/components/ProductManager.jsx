@@ -12,7 +12,6 @@ function ProductManager(props) {
   };
 
   const handleSortChange = (e) => {
-    // lowPrice
     props.onSortProducts(e.target.value);
   };
 
@@ -25,6 +24,7 @@ function ProductManager(props) {
 
   return (
     <div className="col-3">
+      {/* Filter */}
       <div className="card">
         <div className="card-header">
           <strong>Filter products</strong>
@@ -56,6 +56,8 @@ function ProductManager(props) {
           </button>
         </div>
       </div>
+
+      {/* Sort */}
       <div className="card mt-4">
         <div className="card-header">
           <strong>Sort Products</strong>
@@ -73,6 +75,15 @@ function ProductManager(props) {
             <option value="az">A-Z</option>
             <option value="za">Z-A</option>
           </select>
+        </div>
+      </div>
+
+      {/* Pagination */}
+      <div className="mt-3">
+        <div className="d-flex flex-row justify-content-between align-items-center">
+          <button className="btn btn-dark">{"<"}</button>
+          <div className="text-center">Page 1 of 3</div>
+          <button className="btn btn-dark">{">"}</button>
         </div>
       </div>
     </div>
