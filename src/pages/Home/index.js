@@ -6,7 +6,12 @@ import ListProduct from "./components/ListProduct";
 
 function Index() {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [finalProducts, setFinalProducts] = useState([]);
+  const [filterState, setFilterState] = useState({
+    keyword: "",
+    category: "",
+    sortBy: "",
+  });
 
   // menggantikan componentDidMount
   useEffect(() => {
@@ -14,27 +19,16 @@ function Index() {
       .get("http://localhost:2021/products")
       .then((res) => {
         setProducts(res.data);
-        setFilteredProducts(res.data);
+        setFinalProducts(res.data);
       })
       .catch((error) => {
         console.log(alert(error.message));
       });
   }, []);
 
-  // const onSearchProducts = ({ keyword, category }) => { ... }
-  const onSearchProducts = (obj) => {
-    const { keyword, category } = obj;
-    const filterResult = products.filter((product) => {
-      const productLowerCase = product.productName.toLowerCase();
-      const keywordLowerCase = keyword.toLowerCase();
-      return (
-        productLowerCase.includes(keywordLowerCase) &&
-        product.category.includes(category)
-      );
-    });
-
-    setFilteredProducts(filterResult);
-  };
+  useEffect(() => {
+    createFinalProducts();
+  }, [filterState]);
 
   const compareStringAsc = (a, b) => {
     if (a.productName < b.productName) {
@@ -56,40 +50,44 @@ function Index() {
     }
   };
 
-  const onSortProducts = (sortBy) => {
-    // sortBy : :lowPrice
-    // rawData : [ {price : 11}, {price : 15}, {price : 13} ]
-    const rawData = [...filteredProducts];
+  const createFinalProducts = () => {
+    const { keyword, category, sortBy } = filterState;
+
+    const filterResult = products.filter((product) => {
+      const productLowerCase = product.productName.toLowerCase();
+      const keywordLowerCase = keyword.toLowerCase();
+      return (
+        productLowerCase.includes(keywordLowerCase) &&
+        product.category.includes(category)
+      );
+    });
 
     switch (sortBy) {
       case "lowPrice":
-        // rawData : [ {price : 11}, {price : 13}, {price : 15} ]
-        rawData.sort((a, b) => a.price - b.price);
+        filterResult.sort((a, b) => a.price - b.price);
         break;
       case "highPrice":
-        // rawData : [ {price : 15}, {price : 13}, {price : 11} ]
-        rawData.sort((a, b) => b.price - a.price);
+        filterResult.sort((a, b) => b.price - a.price);
         break;
       case "az":
-        rawData.sort(compareStringAsc);
+        filterResult.sort(compareStringAsc);
         break;
       case "za":
-        rawData.sort(compareStringDesc);
+        filterResult.sort(compareStringDesc);
         break;
     }
 
-    // [ {price : 11}, {price : 13}, {price : 15} ]
-    setFilteredProducts(rawData);
+    setFinalProducts(filterResult);
   };
 
   return (
     <div className="container mt-5">
       <div className="row">
         <ProductManager
-          onSearchProducts={onSearchProducts}
-          onSortProducts={onSortProducts}
+          setFilterState={setFilterState}
+          filterState={filterState}
         />
-        <ListProduct products={filteredProducts} />
+        <ListProduct products={finalProducts} />
       </div>
     </div>
   );

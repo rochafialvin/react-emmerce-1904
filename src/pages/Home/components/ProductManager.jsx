@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-// props : onSearchProducts, onSortProducts
+// props : filterState, setFilterState
 function ProductManager(props) {
+  const { filterState, setFilterState } = props;
+
   const [formState, setFormState] = useState({
     keyword: "",
     category: "",
@@ -16,10 +18,8 @@ function ProductManager(props) {
   };
 
   const btnSearchHandler = () => {
-    props.onSearchProducts({
-      keyword: formState.keyword,
-      category: formState.category,
-    });
+    // { sort: '', key: 'hitam', cat: 'celana'}
+    setFilterState({ ...filterState, ...formState });
   };
 
   return (
