@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../utils/axios";
+import { Button } from "reactstrap";
 
 import "./style.css";
 
@@ -132,9 +133,10 @@ function ManageProduct() {
             </select>
           </td>
           <td colSpan="2">
-            <button onClick={addNewProduct} className="btn btn-outline-info">
-              Add Product
-            </button>
+            {/* btn btn-outline-primary */}
+            <Button outline color="primary" onClick={addNewProduct}>
+              Add
+            </Button>
           </td>
         </tr>
       </table>

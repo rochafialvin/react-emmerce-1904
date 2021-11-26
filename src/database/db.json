@@ -55,6 +55,14 @@
       "productName": "abcde",
       "category": "celana",
       "description": "Lorem ipsum"
+    },
+    {
+      "id": 1637896911749,
+      "productImage": "lorem.jpg",
+      "price": "900009",
+      "productName": "Button baru nih",
+      "category": "aksesoris",
+      "description": "Lorem ipsum dolor sit amet."
     }
   ],
   "productstemp": [
