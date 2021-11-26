@@ -1,13 +1,17 @@
 import "bootstrap/dist/css/bootstrap.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import ManageProduct from "./pages/ManageProduct";
 
 function App() {
   return (
-    <div>
-      <ManageProduct />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="manage-products" element={<ManageProduct />} />
+      </Routes>
+    </Router>
   );
 }
 
