@@ -37,7 +37,9 @@ function ManageProduct() {
   }, []);
 
   const renderProducts = () => {
-    return products.map((product) => <ProductList product={product} />);
+    return products.map((product) => (
+      <ProductList fetchProducts={fetchProducts} product={product} />
+    ));
   };
 
   const addNewProduct = () => {

@@ -1,9 +1,19 @@
 import React from "react";
+import axios from "../../../utils/axios";
 
 function ProductList(props) {
   const { id, productName, productImage, price, description, category } =
     props.product;
 
+  const onBtnDeleteClick = () => {
+    axios
+      .delete(`/products/${id}`)
+      .then((res) => {
+        alert("Berhasil delete product");
+        props.fetchProducts();
+      })
+      .catch((err) => alert("Gagal delete product"));
+  };
   return (
     <tr>
       <td>{id}</td>
@@ -18,7 +28,9 @@ function ProductList(props) {
         <button className="btn btn-outline-secondary">Edit</button>
       </td>
       <td>
-        <button className="btn btn-outline-danger">Delete</button>
+        <button onClick={onBtnDeleteClick} className="btn btn-outline-danger">
+          Delete
+        </button>
       </td>
     </tr>
   );
