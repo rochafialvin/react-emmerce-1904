@@ -33,20 +33,33 @@ function ProductDetail() {
     // product : {id : 619, price, productName ...}
     // newCart : {id: 23412313245, productId: 619}
 
-    const newCart = {
-      ...product,
-      id: new Date().getTime(),
-      productId: product.id,
-      quantity,
-    };
-
     axios
-      .post("/carts", newCart)
+      .get("/carts", { params: { productId: product.id } })
       .then((res) => {
-        console.log({ res });
+        if (res.data.length) {
+          // Update quantity
+          const cart = res.data[0];
+          axios
+            .patch(`/carts/${cart.id}`, { quantity: cart.quantity + quantity })
+            .then((res) => alert("Berhasil update cart"))
+            .catch((err) => alert("Gagal update cart"));
+        } else {
+          // Create new cart
+          const newCart = {
+            ...product,
+            id: new Date().getTime(),
+            productId: product.id,
+            quantity,
+          };
+
+          axios
+            .post("/carts", newCart)
+            .then((res) => alert("Berhasil membuat cart"))
+            .catch((err) => alert("Gagal membuat cart"));
+        }
       })
       .catch((err) => {
-        console.log({ err });
+        alert("Gagal mengambil cart");
       });
   };
 
