@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 import "./style.css";
 
@@ -15,7 +17,10 @@ function ProductCard(props) {
           <span className="text-muted">Rp. {price}</span>
         </div>
         <div className="d-flex flex-row justify-content-end">
-          <button className="btn btn-primary mt-2 w-100">Detail</button>
+          <Button tag={Link} to="/" outline color="primary">
+            Detail
+          </Button>
+          {/* <button className="btn btn-primary mt-2 w-100">Detail</button> */}
         </div>
       </div>
     </div>

@@ -59,6 +59,7 @@ function ManageProduct() {
     axios
       .post("/products", newProduct)
       .then((res) => {
+        console.log({ res });
         fetchProducts();
       })
       .catch((error) => console.log({ error }));

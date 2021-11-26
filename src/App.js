@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ManageProduct from "./pages/ManageProduct";
 import Navigation from "./components/Navigation";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         {/* Route : Alamat untuk sebuah halaman */}
         <Route path="/" element={<Home />} />
         <Route path="manage-products" element={<ManageProduct />} />
+        {/* product/99  --> 99 akan tersimpan di object params : { id : 99 } */}
+        <Route path="product/:id" element={<ProductDetail />} />
       </Routes>
     </Router>
   );
