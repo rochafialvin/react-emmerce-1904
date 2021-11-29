@@ -8,20 +8,21 @@ import Login from "./pages/Login";
 import ManageProduct from "./pages/ManageProduct";
 import ProductDetail from "./pages/ProductDetail";
 import Navigation from "./components/Navigation";
-import { loginAction } from "./store/actions";
+import { keepLogin } from "./store/actions";
 
 function App() {
   const [isLocalStorageChecked, setIsLocalStorageChecked] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Abil data dari local storage ?
     const userLocalStorage = localStorage.getItem("userData");
 
     if (userLocalStorage) {
       const userData = JSON.parse(userLocalStorage);
       const { id, username, role } = userData;
       // kita loginkan (kirim data user ke state)
-      loginAction({ dispatch, id, username, role });
+      keepLogin({ dispatch, id, username, role });
     }
 
     setIsLocalStorageChecked(true);
