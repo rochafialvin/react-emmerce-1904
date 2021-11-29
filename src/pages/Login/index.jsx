@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { loginAction } from "../../store/actions";
 import axios from "../../utils/axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
   const dispatch = useDispatch();
+  const username = useSelector((state) => state.auth.username);
   const [formState, setFormState] = useState({
     username: "",
     password: "",
   });
+
+  // Jika sudah login maka akan diarahkan ke halaman home
+  if (username) {
+    return <Navigate to="/" replace />;
+  }
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });

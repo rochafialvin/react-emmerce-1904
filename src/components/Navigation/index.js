@@ -9,7 +9,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Dropdown,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -25,7 +24,7 @@ function Navigation() {
         EMMERCE
       </NavbarBrand>
 
-      <Nav className="ms-auto" navbar>
+      <Nav className="me-auto" navbar>
         {username ? (
           <UncontrolledDropdown inNavbar nav>
             <DropdownToggle caret nav>
