@@ -30,9 +30,6 @@ function ProductDetail() {
   };
 
   const addToCartHandler = () => {
-    // product : {id : 619, price, productName ...}
-    // newCart : {id: 23412313245, productId: 619}
-
     axios
       .get("/carts", { params: { productId: product.id } })
       .then((res) => {
