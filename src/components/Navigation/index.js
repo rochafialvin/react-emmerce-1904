@@ -31,7 +31,9 @@ function Navigation() {
               HELLO {username}
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>Cart</DropdownItem>
+              <DropdownItem tag={Link} to="/manage-products">
+                Admin
+              </DropdownItem>
               <DropdownItem divider />
               <DropdownItem>Logout</DropdownItem>
             </DropdownMenu>
