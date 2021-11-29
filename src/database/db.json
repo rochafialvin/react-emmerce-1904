@@ -161,6 +161,16 @@
       "description": "a"
     }
   ],
+  "users": [
+    {
+      "fullName": "Alvin",
+      "username": "rochafi",
+      "email": "rochafi@gmail.com",
+      "password": "password",
+      "role": "user",
+      "id": 99
+    }
+  ],
   "carts": [
     {
       "id": 1637913437759,

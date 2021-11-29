@@ -4,16 +4,20 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
-    <Navbar color="light" light>
+    <Navbar color="light" light expand="md">
       <NavbarBrand tag={Link} to="/">
         EMMERCE
       </NavbarBrand>
 
       <Nav className="ms-auto" navbar>
         <NavItem>
-          {/* <Link to="/manage-products">Manage products</Link> */}
           <NavLink tag={Link} to="/manage-products">
-            Manage Products
+            Admin
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to="/login">
+            Login
           </NavLink>
         </NavItem>
       </Nav>
