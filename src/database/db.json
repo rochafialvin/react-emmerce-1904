@@ -177,6 +177,22 @@
       "password": "password",
       "role": "admin",
       "id": 909
+    },
+    {
+      "id": 1638239855802,
+      "role": "user",
+      "username": "moon",
+      "fullName": "Full  Moon",
+      "email": "moon@raker.com",
+      "password": "password"
+    },
+    {
+      "id": 1638240070050,
+      "role": "user",
+      "username": "register",
+      "fullName": "Register ulang",
+      "email": "register@mail.com",
+      "password": "password"
     }
   ],
   "carts": [

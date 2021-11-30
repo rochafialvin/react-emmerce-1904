@@ -46,7 +46,7 @@ function Navigation() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/rgister">
+              <NavLink tag={Link} to="/register">
                 Register
               </NavLink>
             </NavItem>
