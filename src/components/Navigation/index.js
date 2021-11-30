@@ -12,11 +12,18 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { logoutAction } from "../../store/actions";
+import { useDispatch } from "react-redux";
 
 function Navigation() {
+  const dispatch = useDispatch();
   const { username, role } = useSelector((state) => {
     return state.auth;
   });
+
+  const onLogoutClick = () => {
+    logoutAction(dispatch);
+  };
 
   return (
     <Navbar color="light" light expand="md">
@@ -40,7 +47,7 @@ function Navigation() {
                 </DropdownItem>
               )}
               <DropdownItem divider />
-              <DropdownItem>Logout</DropdownItem>
+              <DropdownItem onClick={onLogoutClick}>Logout</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         ) : (

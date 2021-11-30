@@ -23,7 +23,9 @@ const authReducer = (state = init, action) => {
         username: action.payload.username,
         role: action.payload.role,
       };
-      break;
+
+    case "LOGOUT_SUCCESS":
+      return init;
 
     default:
       // Mulangin data
