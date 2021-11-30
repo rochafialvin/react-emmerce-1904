@@ -80,7 +80,7 @@ function ManageProduct() {
             <th>Image</th>
             <th>Description</th>
             <th>Category</th>
-            <th colSpan="2">Action</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>{renderProducts()}</tbody>

@@ -19,44 +19,46 @@ function ProductList(props) {
 
   const onBtnSaveClick = () => {};
 
-  const onBtnEditClick = () => {
-    setIsEdit(true);
-  };
-  const onBtnCancelClick = () => {
-    setIsEdit(false);
+  const onBtnEditOrCancelClick = () => {
+    setIsEdit(!isEdit);
   };
 
   if (isEdit) {
     return (
       <tr>
         <td>{id}</td>
-        <td>
-          <input type="text" name="productName" />
+        <td className="table-data">
+          <input type="text" name="editProductName" />
         </td>
-        <td>
-          <input type="text" name="price" />
+        <td className="table-data">
+          <input type="text" name="editPrice" />
         </td>
-        <td>
-          <input type="text" name="productImage" />
+        <td className="table-data">
+          <input type="text" name="editProductImage" />
         </td>
-        <td>
-          <input type="text" name="description" />
+        <td className="table-data">
+          <input type="text" name="editDescription" />
         </td>
-        <td>
-          <select name="category" className="form-control">
+        <td className="table-data">
+          <select name="editCategory" className="form-control">
             <option value="">All Items</option>
             <option value="kaos">Kaos</option>
             <option value="celana">Celana</option>
             <option value="aksesoris">Aksesoris</option>
           </select>
         </td>
-        <td>
-          <button onClick={onBtnCancelClick} className="btn btn-outline-danger">
+        <td className="table-data">
+          <button
+            onClick={onBtnEditOrCancelClick}
+            className="w-100 btn btn-outline-warning"
+          >
             Cancel
           </button>
-        </td>
-        <td>
-          <button onClick={onBtnSaveClick} className="btn btn-outline-success">
+
+          <button
+            onClick={onBtnSaveClick}
+            className="w-100 btn btn-outline-success"
+          >
             Save
           </button>
         </td>
@@ -67,20 +69,25 @@ function ProductList(props) {
   return (
     <tr>
       <td>{id}</td>
-      <td>{productName}</td>
-      <td>{price}</td>
-      <td>
+      <td className="table-data">{productName}</td>
+      <td className="table-data">{price}</td>
+      <td className="table-data">
         <img className="admin-product-image" src={productImage} alt="" />
       </td>
-      <td>{description}</td>
-      <td>{category}</td>
-      <td>
-        <button onClick={onBtnEditClick} className="btn btn-outline-secondary">
+      <td className="table-data">{description}</td>
+      <td className="table-data">{category}</td>
+      <td className="table-data">
+        <button
+          onClick={onBtnEditOrCancelClick}
+          className=" w-100 btn btn-outline-info"
+        >
           Edit
         </button>
-      </td>
-      <td>
-        <button onClick={onBtnDeleteClick} className="btn btn-outline-danger">
+
+        <button
+          onClick={onBtnDeleteClick}
+          className=" w-100 btn btn-outline-danger"
+        >
           Delete
         </button>
       </td>
