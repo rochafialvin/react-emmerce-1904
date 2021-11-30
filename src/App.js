@@ -5,9 +5,12 @@ import { useDispatch } from "react-redux";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
+import Navigation from "./components/Navigation";
 import ManageProduct from "./pages/ManageProduct";
 import ProductDetail from "./pages/ProductDetail";
-import Navigation from "./components/Navigation";
+
 import { keepLogin } from "./store/actions";
 
 function App() {
@@ -15,13 +18,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Abil data dari local storage ?
     const userLocalStorage = localStorage.getItem("userData");
 
     if (userLocalStorage) {
       const userData = JSON.parse(userLocalStorage);
       const { id, username, role } = userData;
-      // kita loginkan (kirim data user ke state)
       keepLogin({ dispatch, id, username, role });
     }
 
@@ -35,9 +36,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="manage-products" element={<ManageProduct />} />
-
           <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     );

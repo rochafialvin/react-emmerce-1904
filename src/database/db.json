@@ -169,6 +169,14 @@
       "password": "password",
       "role": "user",
       "id": 99
+    },
+    {
+      "fullName": "Super Admin",
+      "username": "super_admin",
+      "email": "admin@gmail.com",
+      "password": "password",
+      "role": "admin",
+      "id": 909
     }
   ],
   "carts": [
