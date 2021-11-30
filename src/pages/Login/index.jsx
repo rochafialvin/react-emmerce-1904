@@ -21,17 +21,7 @@ function Login() {
   };
 
   const onLogin = async () => {
-    try {
-      const res = await axios.get("/users", {
-        params: { username: formState.username, password: formState.password },
-      });
-
-      const { id, username, role } = res.data[0];
-      // actionObj = {type: LOGIN_SUCCESS, payload : {id, username, role}}
-      dispatch(loginAction({ id, username, role }));
-    } catch (error) {
-      console.log({ error });
-    }
+    dispatch(loginAction(formState));
   };
 
   const onLoginClick = () => {
