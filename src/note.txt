@@ -2,3 +2,6 @@
 2. REGISTER (fullname, email, username, password)
 3. Halaman register tidak dapat diakses ketika sudah login
 4. Halaman admin tidak dapat diakses ketika role nya bukan admin
+
+onChange / onInput : Jika ada perubahan di textbox
+onKeyDown

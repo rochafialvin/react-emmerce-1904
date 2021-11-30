@@ -16,7 +16,11 @@ function Login() {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const onLoginClick = () => {
+  const onInputPress = (e) => {
+    if (e.code === "Enter") onLogin();
+  };
+
+  const onLogin = () => {
     axios
       .get("/users", {
         params: { username: formState.username, password: formState.password },
@@ -26,6 +30,10 @@ function Login() {
         loginAction({ dispatch, id, username, role });
       })
       .catch((err) => console.log({ err }));
+  };
+
+  const onLoginClick = () => {
+    onLogin();
   };
 
   if (username) {
@@ -53,6 +61,7 @@ function Login() {
                 type="text"
                 className="form-control my-2"
                 onChange={handleChange}
+                onKeyPress={onInputPress}
               />
               <input
                 name="password"
@@ -60,6 +69,7 @@ function Login() {
                 type="password"
                 className="form-control my-2"
                 onChange={handleChange}
+                onKeyPress={onInputPress}
               />
               <div className="d-flex flex-row justify-content-between align-items-center">
                 <button onClick={onLoginClick} className="btn btn-primary mt-2">
