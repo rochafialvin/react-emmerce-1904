@@ -19,21 +19,19 @@ function Index() {
   });
 
   // menggantikan componentDidMount
-  useEffect(() => {
-    axios
-      .get("/products")
-      .then((res) => {
-        const { data } = res;
-        setProducts(data);
-        setFinalProducts(data);
-        setPaginationState({
-          ...paginationState,
-          maxPage: Math.ceil(data.length / paginationState.itemsPerPage),
-        });
-      })
-      .catch((error) => {
-        console.log(alert(error.message));
+  useEffect(async () => {
+    try {
+      const res = await axios.get("/products");
+      const { data } = res;
+      setProducts(data);
+      setFinalProducts(data);
+      setPaginationState({
+        ...paginationState,
+        maxPage: Math.ceil(data.length / paginationState.itemsPerPage),
       });
+    } catch (error) {
+      console.log(alert(error.message));
+    }
   }, []);
 
   useEffect(() => {

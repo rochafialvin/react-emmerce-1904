@@ -185,6 +185,14 @@
       "fullName": "Register ulang",
       "email": "register@mail.com",
       "password": "password"
+    },
+    {
+      "id": 1638257570736,
+      "role": "user",
+      "username": "eseven",
+      "fullName": "ES7",
+      "email": "eseven@mail.com",
+      "password": "password"
     }
   ],
   "carts": [

@@ -18,23 +18,22 @@ function Register() {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const onRegisterClick = () => {
-    const newUser = {
-      id: new Date().getTime(),
-      role: "user",
-      username,
-      fullName,
-      email,
-      password,
-    };
-
-    axios
-      .post("/users", newUser)
-      .then((res) => {
-        setFormState(initFormState);
-        alert("Register berhasil");
-      })
-      .catch((err) => alert("Register gagal"));
+  const onRegisterClick = async () => {
+    try {
+      const newUser = {
+        id: new Date().getTime(),
+        role: "user",
+        username,
+        fullName,
+        email,
+        password,
+      };
+      await axios.post("/users", newUser);
+      setFormState(initFormState);
+      alert("Register berhasil");
+    } catch (error) {
+      alert("Register gagal");
+    }
   };
 
   if (usernameLogin) {

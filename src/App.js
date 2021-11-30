@@ -11,7 +11,7 @@ import Navigation from "./components/Navigation";
 import ManageProduct from "./pages/ManageProduct";
 import ProductDetail from "./pages/ProductDetail";
 
-import { keepLogin } from "./store/actions";
+import { keepLoginAction } from "./store/actions";
 
 function App() {
   const [isLocalStorageChecked, setIsLocalStorageChecked] = useState(false);
@@ -23,7 +23,7 @@ function App() {
     if (userLocalStorage) {
       const userData = JSON.parse(userLocalStorage);
       const { id, username, role } = userData;
-      dispatch(keepLogin({ id, username, role }));
+      dispatch(keepLoginAction({ id, username, role }));
     }
 
     setIsLocalStorageChecked(true);
