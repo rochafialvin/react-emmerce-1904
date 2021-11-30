@@ -2,8 +2,8 @@
   "products": [
     {
       "id": 1,
-      "productName": "Kaos Hitam Polos",
-      "price": 25000,
+      "productName": "Kaos Hitam Poloson",
+      "price": "50000",
       "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/1ccc62f925118a5e2a54f9ca1b0eac4b197477ba_xxl-1.jpg",
       "description": "Round-necked T-shirt in soft cotton jersey.",
       "category": "kaos"
@@ -151,14 +151,6 @@
       "description": "5-pocket jeans in washed stretch denim with a regular waist, zip fly and button, and skinny legs.",
       "category": "celana",
       "id": 19
-    },
-    {
-      "id": 1637915988504,
-      "productImage": "a",
-      "price": 0,
-      "productName": "a",
-      "category": "aksesoris",
-      "description": "a"
     }
   ],
   "users": [
