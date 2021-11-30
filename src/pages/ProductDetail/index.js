@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../utils/axios";
+import { useSelector } from "react-redux";
 
 function ProductDetail() {
   const params = useParams();
+  const userId = useSelector((state) => state.auth.id);
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
 
@@ -31,7 +33,7 @@ function ProductDetail() {
 
   const addToCartHandler = () => {
     axios
-      .get("/carts", { params: { productId: product.id } })
+      .get("/carts", { params: { productId: product.id, userId } })
       .then((res) => {
         if (res.data.length) {
           // Update quantity
@@ -47,6 +49,7 @@ function ProductDetail() {
             id: new Date().getTime(),
             productId: product.id,
             quantity,
+            userId,
           };
 
           axios
