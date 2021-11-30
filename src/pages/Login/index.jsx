@@ -12,11 +12,6 @@ function Login() {
     password: "",
   });
 
-  // Jika sudah login maka akan diarahkan ke halaman home
-  if (username) {
-    return <Navigate to="/" replace />;
-  }
-
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
@@ -33,6 +28,9 @@ function Login() {
       .catch((err) => console.log({ err }));
   };
 
+  if (username) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className="container">
       <div className="row">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../utils/axios";
 import { Button } from "reactstrap";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./style.css";
 
@@ -15,6 +17,7 @@ function ManageProduct() {
     description: "",
     category: "",
   });
+  const role = useSelector((state) => state.auth.role);
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -55,9 +58,6 @@ function ManageProduct() {
       description,
     };
 
-    console.log("Dirubah oleh aku");
-    // AXIOS bersifat asynchronous, tanpa perlu menunggu proses ini selesai, javascript akan memproses kode berikutnya
-    // JIKA ingin menjalankan kode setelah prosesnya selesai, maka tulis didalam .then() atau .catch()
     axios
       .post("/products", newProduct)
       .then((res) => {
@@ -67,6 +67,7 @@ function ManageProduct() {
       .catch((error) => console.log({ error }));
   };
 
+  if (role !== "admin") return <Navigate to="/" replace />;
   return (
     <div className="container">
       <h1 className="text-center">Manage Products</h1>

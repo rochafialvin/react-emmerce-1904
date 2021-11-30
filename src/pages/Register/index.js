@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "../../utils/axios";
 
 function Register() {
@@ -11,6 +12,7 @@ function Register() {
   };
   const [formState, setFormState] = useState(initFormState);
   const { fullName, username, email, password } = formState;
+  const usernameLogin = useSelector((state) => state.auth.username);
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -35,6 +37,9 @@ function Register() {
       .catch((err) => alert("Register gagal"));
   };
 
+  if (usernameLogin) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className="container">
       <div className="row">

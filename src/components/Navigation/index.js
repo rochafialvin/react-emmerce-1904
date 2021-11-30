@@ -14,8 +14,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Navigation() {
-  const username = useSelector((state) => {
-    return state.auth.username;
+  const { username, role } = useSelector((state) => {
+    return state.auth;
   });
 
   return (
@@ -31,9 +31,14 @@ function Navigation() {
               HELLO {username}
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem tag={Link} to="/manage-products">
-                Admin
+              <DropdownItem tag={Link} to="/cart">
+                Cart
               </DropdownItem>
+              {role === "admin" && (
+                <DropdownItem tag={Link} to="/manage-products">
+                  Admin
+                </DropdownItem>
+              )}
               <DropdownItem divider />
               <DropdownItem>Logout</DropdownItem>
             </DropdownMenu>
