@@ -5,3 +5,10 @@
 
 onChange / onInput : Jika ada perubahan di textbox
 onKeyDown
+
+
+1. register tidak menggunakan reducer
+2. beda keepLogin dengan loginAction
+
+reducer --> state
+register, data apa yang ingin disimpan di state ?

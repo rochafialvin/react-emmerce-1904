@@ -27,7 +27,8 @@ function Login() {
       })
       .then((res) => {
         const { id, username, role } = res.data[0];
-        loginAction({ dispatch, id, username, role });
+        // actionObj = {type: LOGIN_SUCCESS, payload : {id, username, role}}
+        dispatch(loginAction({ id, username, role }));
       })
       .catch((err) => console.log({ err }));
   };

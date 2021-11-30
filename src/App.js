@@ -23,7 +23,7 @@ function App() {
     if (userLocalStorage) {
       const userData = JSON.parse(userLocalStorage);
       const { id, username, role } = userData;
-      keepLogin({ dispatch, id, username, role });
+      dispatch(keepLogin({ id, username, role }));
     }
 
     setIsLocalStorageChecked(true);

@@ -22,7 +22,7 @@ function Navigation() {
   });
 
   const onLogoutClick = () => {
-    logoutAction(dispatch);
+    dispatch(logoutAction());
   };
 
   return (
