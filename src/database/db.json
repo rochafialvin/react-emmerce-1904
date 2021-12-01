@@ -217,17 +217,6 @@
       "productId": 1,
       "quantity": 3,
       "userId": 1638239855802
-    },
-    {
-      "productName": "Black Skinny Jeans",
-      "price": 420000,
-      "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/5d0d93e035dba0a9a40f1c93e35ba0d33ea02822_xxl-1.jpg",
-      "description": "5-pocket jeans in washed stretch denim with a regular waist, zip fly and button, and skinny legs.",
-      "category": "celana",
-      "id": 1638329508180,
-      "productId": 18,
-      "quantity": 2,
-      "userId": 99
     }
   ]
 }

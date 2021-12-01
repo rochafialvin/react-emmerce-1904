@@ -6,14 +6,31 @@ function Cart() {
   const userId = useSelector((state) => state.auth.id);
   const [carts, setCarts] = useState([]);
 
-  useEffect(async () => {
+  const fetchCarts = async () => {
     try {
       const res = await axios.get("/carts", { params: { userId } });
       setCarts(res.data);
     } catch (error) {
       alert("Gagal mengambil carts");
     }
+  };
+
+  useEffect(() => {
+    fetchCarts();
   }, []);
+
+  const onDeleteClick = async (id) => {
+    const isDelete = window.confirm("Apakah yakin ingin menghapus cart ini ?");
+    if (isDelete) {
+      try {
+        await axios.delete(`/carts/${id}`);
+        alert("Delete product berhasil");
+        fetchCarts();
+      } catch (error) {
+        alert("Delete product gagal");
+      }
+    }
+  };
 
   const renderCarts = () => {
     return carts.map((cart) => {
@@ -27,7 +44,14 @@ function Cart() {
           <td className="align-middle">{cart.quantity}</td>
           <td className="align-middle">{cart.quantity * cart.price}</td>
           <td className="align-middle">
-            <button className="btn btn-danger">Delete</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                onDeleteClick(cart.id);
+              }}
+            >
+              Delete
+            </button>
           </td>
         </tr>
       );
