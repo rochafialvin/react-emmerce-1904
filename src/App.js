@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Home from "./pages/Home";
+import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
@@ -35,6 +36,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="manage-products" element={<ManageProduct />} />
