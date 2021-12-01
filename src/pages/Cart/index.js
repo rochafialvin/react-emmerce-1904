@@ -5,11 +5,21 @@ import axios from "../../utils/axios";
 function Cart() {
   const userId = useSelector((state) => state.auth.id);
   const [carts, setCarts] = useState([]);
+  const [formState, setFormState] = useState({
+    recipientName: "",
+    address: "",
+    payment: 0,
+  });
   const [isShowSummary, setIsShowSummary] = useState(false);
+
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
 
   const fetchCarts = async () => {
     try {
       const res = await axios.get("/carts", { params: { userId } });
+
       setCarts(res.data);
     } catch (error) {
       alert("Gagal mengambil carts");
@@ -33,10 +43,32 @@ function Cart() {
     }
   };
 
+  const onPaymentClick = async () => {
+    try {
+      const date = new Date();
+      const newTransaction = {
+        id: date.getTime(),
+        userId,
+        address: formState.address,
+        totalPayment: renderTotalPrice(),
+        recipientName: formState.recipientName,
+        transactionDate: `${date.getDate()} - ${
+          date.getMonth() + 1
+        } - ${date.getFullYear()}`,
+        transactionItems: carts,
+      };
+      await axios.post("/transactions", newTransaction);
+      alert("Transaksi berhasil");
+    } catch (error) {
+      alert("Transaksi gagal");
+      console.log(error);
+    }
+  };
+
   const renderCarts = () => {
     return carts.map((cart) => {
       return (
-        <tr>
+        <tr key={cart.id}>
           <td className="align-middle">{cart.productName}</td>
           <td className="align-middle">{cart.price}</td>
           <td className="align-middle">
@@ -132,9 +164,15 @@ function Cart() {
                   type="text"
                   className="form-control mb-3"
                   name="recipientName"
+                  onChange={handleChange}
                 />
                 <label htmlFor="address">Address</label>
-                <input type="text" className="form-control" name="address" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="address"
+                  onChange={handleChange}
+                />
               </div>
               <div className="card-footer">
                 <div className="d-flex flex-row justify-content-between align-items-center">
@@ -142,8 +180,14 @@ function Cart() {
                     name="payment"
                     className="form-control mx-1"
                     type="number"
+                    onChange={handleChange}
                   />
-                  <button className="btn btn-outline-success mx-1">Pay</button>
+                  <button
+                    onClick={onPaymentClick}
+                    className="btn btn-outline-success mx-1"
+                  >
+                    Pay
+                  </button>
                 </div>
               </div>
             </div>

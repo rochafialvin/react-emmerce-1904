@@ -199,7 +199,7 @@
     {
       "id": 1638248379121,
       "productName": "Kaos Hitam Poloson",
-      "price": "50000",
+      "price": 50000,
       "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/1ccc62f925118a5e2a54f9ca1b0eac4b197477ba_xxl-1.jpg",
       "description": "Round-necked T-shirt in soft cotton jersey.",
       "category": "kaos",
@@ -210,7 +210,7 @@
     {
       "id": 1638248518019,
       "productName": "Kaos Hitam Poloson",
-      "price": "50000",
+      "price": 50000,
       "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/1ccc62f925118a5e2a54f9ca1b0eac4b197477ba_xxl-1.jpg",
       "description": "Round-necked T-shirt in soft cotton jersey.",
       "category": "kaos",
@@ -228,6 +228,40 @@
       "productId": 14,
       "quantity": 3,
       "userId": 99
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1638335789855,
+      "userId": 99,
+      "address": "Lorem address",
+      "totalPayment": 567000,
+      "recipientName": "Lorem name",
+      "transactionDate": "1 - 12 - 2021",
+      "transactionItems": [
+        {
+          "id": 1638248379121,
+          "productName": "Kaos Hitam Poloson",
+          "price": 50000,
+          "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/1ccc62f925118a5e2a54f9ca1b0eac4b197477ba_xxl-1.jpg",
+          "description": "Round-necked T-shirt in soft cotton jersey.",
+          "category": "kaos",
+          "productId": 1,
+          "quantity": 3,
+          "userId": 99
+        },
+        {
+          "id": 1638331608997,
+          "productName": "Bucket Hat Hitam",
+          "price": 130000,
+          "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/d3c02a301eaf7520a2ea9d11d0f198af4abfe922_xxl-1.jpg",
+          "description": "Bucket hat in woven fabric. Width of brim approx. 6 cm.",
+          "category": "aksesoris",
+          "productId": 14,
+          "quantity": 3,
+          "userId": 99
+        }
+      ]
     }
   ]
 }

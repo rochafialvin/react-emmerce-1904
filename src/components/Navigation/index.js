@@ -37,7 +37,7 @@ function Navigation() {
             <DropdownToggle caret nav>
               HELLO {username}
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu end>
               <DropdownItem tag={Link} to="/cart">
                 Cart
               </DropdownItem>
