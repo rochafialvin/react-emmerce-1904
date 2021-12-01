@@ -64,7 +64,7 @@ function Cart() {
         "September",
         "October",
         "November",
-        "Dececember",
+        "December",
       ];
 
       const newTransaction = {
