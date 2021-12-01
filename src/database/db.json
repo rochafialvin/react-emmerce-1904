@@ -217,6 +217,17 @@
       "productId": 1,
       "quantity": 3,
       "userId": 1638239855802
+    },
+    {
+      "id": 1638331608997,
+      "productName": "Bucket Hat Hitam",
+      "price": 130000,
+      "productImage": "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/d3c02a301eaf7520a2ea9d11d0f198af4abfe922_xxl-1.jpg",
+      "description": "Bucket hat in woven fabric. Width of brim approx. 6 cm.",
+      "category": "aksesoris",
+      "productId": 14,
+      "quantity": 3,
+      "userId": 99
     }
   ]
 }

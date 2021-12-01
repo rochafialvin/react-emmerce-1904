@@ -5,6 +5,7 @@ import axios from "../../utils/axios";
 function Cart() {
   const userId = useSelector((state) => state.auth.id);
   const [carts, setCarts] = useState([]);
+  const [isShowSummary, setIsShowSummary] = useState(false);
 
   const fetchCarts = async () => {
     try {
@@ -45,7 +46,7 @@ function Cart() {
           <td className="align-middle">{cart.quantity * cart.price}</td>
           <td className="align-middle">
             <button
-              className="btn btn-danger"
+              className="btn btn-outline-danger"
               onClick={() => {
                 onDeleteClick(cart.id);
               }}
@@ -56,6 +57,20 @@ function Cart() {
         </tr>
       );
     });
+  };
+
+  const renderSubTotal = () => {
+    let subTotal = 0;
+    carts.forEach((cart) => (subTotal += cart.quantity * cart.price));
+    return subTotal;
+  };
+
+  const renderTaxFee = () => {
+    return renderSubTotal() * 0.05;
+  };
+
+  const renderTotalPrice = () => {
+    return renderSubTotal() + renderTaxFee();
   };
 
   return (
@@ -78,12 +93,62 @@ function Cart() {
             <tfoot className="bg-light">
               <tr>
                 <td colSpan="6">
-                  <button className="btn btn-success">Checkout</button>
+                  <button
+                    onClick={() => {
+                      setIsShowSummary(!isShowSummary);
+                    }}
+                    className="btn btn-outline-success"
+                  >
+                    Checkout
+                  </button>
                 </td>
               </tr>
             </tfoot>
           </table>
         </div>
+        {isShowSummary && (
+          <div className="col-3">
+            <div className="card text-left">
+              <div className="card-header">
+                <strong>Order Summary</strong>
+              </div>
+              <div className="card-body">
+                <div className="d-flex my-2 flex-row justify-content-between align-items-center">
+                  <span className="font-weight-bold">Subtotal Price</span>
+                  <span>Rp {renderSubTotal()}</span>
+                </div>
+                <div className="d-flex my-2 flex-row justify-content-between align-items-center">
+                  <span className="font-weight-bold">Tax Fee (5%)</span>
+                  <span>Rp {renderTaxFee()}</span>
+                </div>
+                <div className="d-flex my-2 flex-row justify-content-between align-items-center">
+                  <span className="font-weight-bold">Total Price</span>
+                  <span>Rp {renderTotalPrice()}</span>
+                </div>
+              </div>
+              <div className="card-body border-top">
+                <label htmlFor="recipientName">Recipient Name</label>
+                <input
+                  type="text"
+                  className="form-control mb-3"
+                  name="recipientName"
+                />
+                <label htmlFor="address">Address</label>
+                <input type="text" className="form-control" name="address" />
+              </div>
+              <div className="card-footer">
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                  <input
+                    name="payment"
+                    className="form-control mx-1"
+                    type="number"
+                  />
+                  <button className="btn btn-outline-success mx-1">Pay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
