@@ -21,7 +21,8 @@ function Login() {
   };
 
   const onLogin = async () => {
-    dispatch(loginAction(formState));
+    const action = loginAction(formState);
+    dispatch(action); // --> kirim ke reducer --> kirim ke state (selesai)
   };
 
   const onLoginClick = () => {

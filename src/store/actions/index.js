@@ -4,28 +4,31 @@
 import axios from "../../utils/axios";
 
 export const loginAction = (loginData) => {
-  // loginAction akan return function, functionnya akan masuk ke middleware
-  // function ini kemudian akan dijalankan oleh middleware
   return async (dispatch) => {
     try {
       const res = await axios.get("/users", {
         params: { username: loginData.username, password: loginData.password },
       });
 
+      // toString()
+      // 23 --> "23"
+
+      // JSON.stringify()
+      // {id, username, role} ---> "{id, username, role}"
+
       if (res.data.length) {
+        // menyimpan data user yang login ke local storage
         const { id, username, role } = res.data[0];
-        // menyimpan data di local storage
         localStorage.setItem(
           "userData",
           JSON.stringify({ id, username, role })
         );
-        // mengirim data kembali ke middleware (thunk) , baru kemudian di teruskan ke reducer
+
+        // mengirim kembali ke middleware untuk kemudian di simpan ke redux state
         dispatch({
           type: "LOGIN_SUCCESS",
           payload: { id, username, role },
         });
-      } else {
-        alert("Username or Password is incorrect");
       }
     } catch (error) {
       console.log({ error });
