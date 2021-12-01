@@ -45,17 +45,44 @@ function Cart() {
 
   const onPaymentClick = async () => {
     try {
-      const date = new Date();
+      const d = new Date();
+      const date = d.getDate();
+      const month = d.getMonth();
+      const year = d.getFullYear();
+      const hours = d.getHours();
+      const minutes = d.getMinutes();
+
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "Dececember",
+      ];
+
       const newTransaction = {
-        id: date.getTime(),
+        id: d.getTime(),
         userId,
         address: formState.address,
         totalPayment: renderTotalPrice(),
         recipientName: formState.recipientName,
-        transactionDate: `${date.getDate()} - ${
-          date.getMonth() + 1
-        } - ${date.getFullYear()}`,
+        transactionDate: {
+          date,
+          month,
+          year,
+          hours,
+          minutes,
+          monthWord: months[month],
+        },
         transactionItems: carts,
+        invoiceNumber: `INV/${year}${month}${date}`,
       };
       await axios.post("/transactions", newTransaction);
       alert("Transaksi berhasil");

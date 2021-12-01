@@ -41,6 +41,9 @@ function Navigation() {
               <DropdownItem tag={Link} to="/cart">
                 Cart
               </DropdownItem>
+              <DropdownItem tag={Link} to="/history-transaction">
+                Transaction
+              </DropdownItem>
               {role === "admin" && (
                 <DropdownItem tag={Link} to="/manage-products">
                   Admin

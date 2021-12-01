@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 import ManageProduct from "./pages/ManageProduct";
 import ProductDetail from "./pages/ProductDetail";
+import HistoryTransaction from "./pages/HistoryTransaction";
 
 import { keepLoginAction } from "./store/actions";
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="history-transaction" element={<HistoryTransaction />} />
           <Route path="manage-products" element={<ManageProduct />} />
           <Route path="product/:id" element={<ProductDetail />} />
           <Route path="*" element={<NotFound />} />
