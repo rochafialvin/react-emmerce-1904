@@ -113,13 +113,13 @@ function HistoryTransaction() {
     });
   };
   return (
-    <>
-      <div className="transaction-container">{renderTransaction()}</div>
+    <div className="transaction-container">
+      {renderTransaction()}
       <TransactionModal
         isModalShow={isModalShow}
         setIsModalShow={setIsModalShow}
       />
-    </>
+    </div>
   );
 }
 
