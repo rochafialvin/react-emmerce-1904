@@ -3,10 +3,13 @@ import { Link, Navigate } from "react-router-dom";
 import { loginAction } from "../../store/actions";
 import axios from "../../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.username);
+  const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -21,8 +24,12 @@ function Login() {
   };
 
   const onLogin = async () => {
-    const action = loginAction(formState);
-    dispatch(action); // --> kirim ke reducer --> kirim ke state (selesai)
+    setIsLoading(true);
+    setTimeout(() => {
+      const action = loginAction(formState);
+      dispatch(action); // --> kirim ke reducer --> kirim ke state (selesai)
+      setIsLoading(false);
+    }, 2000);
   };
 
   const onLoginClick = () => {
@@ -32,6 +39,7 @@ function Login() {
   if (username) {
     return <Navigate to="/" replace />;
   }
+
   return (
     <div className="container">
       <div className="row">
@@ -65,8 +73,15 @@ function Login() {
                 onKeyPress={onInputPress}
               />
               <div className="d-flex flex-row justify-content-between align-items-center">
-                <button onClick={onLoginClick} className="btn btn-primary mt-2">
-                  Login
+                <button
+                  onClick={onLoginClick}
+                  className={`btn btn-primary mt-2 ${isLoading && "disabled"} `}
+                >
+                  {isLoading ? (
+                    <FontAwesomeIcon icon={faCircleNotch} spin />
+                  ) : (
+                    "Login"
+                  )}
                 </button>
                 <Link to="/register">Or register</Link>
               </div>

@@ -29,6 +29,8 @@ export const loginAction = (loginData) => {
           type: "LOGIN_SUCCESS",
           payload: { id, username, role },
         });
+      } else {
+        alert("Username or password is incorrect");
       }
     } catch (error) {
       console.log({ error });

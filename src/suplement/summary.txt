@@ -1,0 +1,21 @@
+- useEffect pada dasarnya akan selalu running setelah render, namun bisa kita setting agar running pada saat tertentu saja
+- useEffect dapat di setting dengan menambahkan array dependency.
+- Jika array dependency pada useEffect kosong, maka useEffect hanya akan berjalan satu kali setelah render pertama kali layaknya componentDidMount
+- Jika array dependency pada useEffect di isi dengan suatu variable, maka useEffect hanya akan berjalan jika variable tersebut mengalami perubahan
+
+- async await merupakan syntax javascript dengan standar ES7 untuk menghandle proses asynchronous yang sebelumnya di handle menggunakan syntax promise (then dan catch)
+- proses asynchronous yang akan menggunakan syntax async await harus berada di dalam function yang memiliki keyword async
+
+- dispatch merupakan sebuah function yang akan mengirim sebuah action (object dengan property type) ke semua reducer
+
+- Gunakan display flex jika ingin : 
+  - Komponen tersusun secara horizontal
+  - Menempatkan component(s) secara horizontal atau vertical
+
+- Install font awesome disini : https://www.positronx.io/how-to-add-and-use-font-awesome-in-react-app/
+
+- Gunakanlah suatu state yang menyimpan boolean untuk menentukan kondisi kapan suatu komponen / icon harus tampil
+  contoh case : loading icon pada tombol login, komponen modal pada halaman cart
+
+- Setimeout dapat digunakan untuk mensimulasikan proses asynchronous yang membutuhkan waktu tertentu.
+

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "../../utils/axios";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { useSelector } from "react-redux";
 import "./style.css";
+import axios from "../../utils/axios";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 function TransactionModal(props) {
   return (
@@ -114,6 +115,8 @@ function HistoryTransaction() {
       );
     });
   };
+
+  if (!userId) return <Navigate to="/" replace />;
   return (
     <div className="transaction-container">
       {renderTransaction()}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import axios from "../../utils/axios";
 
 function Cart() {
@@ -96,7 +97,6 @@ function Cart() {
         invoiceNumber: `INV/${year}${month}${date}`,
       };
       await axios.post("/transactions", newTransaction);
-      alert("Transaksi berhasil");
     } catch (error) {
       alert("Transaksi gagal");
       console.log(error);
@@ -129,6 +129,8 @@ function Cart() {
     });
   };
 
+  // userId : 0
+  if (!userId) return <Navigate to="/" replace />;
   return (
     <div className="p-5 text-center">
       <h1>Cart</h1>
