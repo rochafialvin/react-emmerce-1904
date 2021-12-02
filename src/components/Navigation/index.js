@@ -26,8 +26,8 @@ function Navigation() {
   };
 
   return (
-    <Navbar color="light" light expand="md">
-      <NavbarBrand tag={Link} to="/">
+    <Navbar color="dark" dark expand="md">
+      <NavbarBrand tag={Link} to="/" dark>
         EMMERCE
       </NavbarBrand>
 

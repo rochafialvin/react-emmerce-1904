@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./style.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
