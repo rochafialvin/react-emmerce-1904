@@ -52,7 +52,9 @@ function HistoryTransaction() {
           {/* merah - start */}
           <div className="transaction-item-info1">
             <strong>Belanja</strong>
-            {`${trx.transactionDate.date} ${trx.transactionDate.monthWord} ${trx.transactionDate.year}`}
+            <span className="mx-2">
+              {`${trx.transactionDate.date} ${trx.transactionDate.monthWord} ${trx.transactionDate.year}`}{" "}
+            </span>
             <span className="transaction-status">Selesai</span>
             {trx.invoiceNumber}
           </div>

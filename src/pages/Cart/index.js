@@ -5,6 +5,11 @@ import axios from "../../utils/axios";
 function Cart() {
   const userId = useSelector((state) => state.auth.id);
   const [carts, setCarts] = useState([]);
+  const [priceState, setPriceState] = useState({
+    subTotal: 0,
+    tax: 0,
+    totalPrice: 0,
+  });
   const [formState, setFormState] = useState({
     recipientName: "",
     address: "",
@@ -18,9 +23,15 @@ function Cart() {
 
   const fetchCarts = async () => {
     try {
-      const res = await axios.get("/carts", { params: { userId } });
+      const { data } = await axios.get("/carts", { params: { userId } });
 
-      setCarts(res.data);
+      let subTotal = 0;
+      data.forEach((cart) => (subTotal += cart.quantity * cart.price));
+      const tax = subTotal * 0.05;
+      const totalPrice = subTotal + tax;
+
+      setPriceState({ subTotal, tax, totalPrice });
+      setCarts(data);
     } catch (error) {
       alert("Gagal mengambil carts");
     }
@@ -71,7 +82,7 @@ function Cart() {
         id: d.getTime(),
         userId,
         address: formState.address,
-        totalPayment: renderTotalPrice(),
+        totalPayment: priceState.totalPrice,
         recipientName: formState.recipientName,
         transactionDate: {
           date,
@@ -118,20 +129,6 @@ function Cart() {
     });
   };
 
-  const renderSubTotal = () => {
-    let subTotal = 0;
-    carts.forEach((cart) => (subTotal += cart.quantity * cart.price));
-    return subTotal;
-  };
-
-  const renderTaxFee = () => {
-    return renderSubTotal() * 0.05;
-  };
-
-  const renderTotalPrice = () => {
-    return renderSubTotal() + renderTaxFee();
-  };
-
   return (
     <div className="p-5 text-center">
       <h1>Cart</h1>
@@ -174,15 +171,15 @@ function Cart() {
               <div className="card-body">
                 <div className="d-flex my-2 flex-row justify-content-between align-items-center">
                   <span className="font-weight-bold">Subtotal Price</span>
-                  <span>Rp {renderSubTotal()}</span>
+                  <span>Rp {priceState.subTotal}</span>
                 </div>
                 <div className="d-flex my-2 flex-row justify-content-between align-items-center">
                   <span className="font-weight-bold">Tax Fee (5%)</span>
-                  <span>Rp {renderTaxFee()}</span>
+                  <span>Rp {priceState.tax}</span>
                 </div>
                 <div className="d-flex my-2 flex-row justify-content-between align-items-center">
                   <span className="font-weight-bold">Total Price</span>
-                  <span>Rp {renderTotalPrice()}</span>
+                  <span>Rp {priceState.totalPrice}</span>
                 </div>
               </div>
               <div className="card-body border-top">

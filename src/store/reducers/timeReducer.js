@@ -6,7 +6,6 @@ const init = {
 };
 
 export default (state = init, action) => {
-  console.log("timeReducer", action);
   switch (action.type) {
     case "SIMPAN_WAKTU":
       /*
