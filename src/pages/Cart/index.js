@@ -47,7 +47,7 @@ function Cart() {
     try {
       const d = new Date();
       const date = d.getDate();
-      const month = d.getMonth();
+      const month = d.getMonth(); // 11
       const year = d.getFullYear();
       const hours = d.getHours();
       const minutes = d.getMinutes();
