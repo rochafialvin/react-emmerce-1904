@@ -13,6 +13,11 @@ import ManageProduct from "./pages/ManageProduct";
 import ProductDetail from "./pages/ProductDetail";
 import HistoryTransaction from "./pages/HistoryTransaction";
 
+// SUPLEMENT
+import AsyncComponent from "./suplement/hooks/AsyncComponent";
+import UseEffect from "./suplement/hooks/UseEffect";
+import ClassComponent from "./suplement/hooks/ClassComponent";
+import DispatchComponent from "./suplement/redux/DispatchComponent";
 import { keepLoginAction } from "./store/actions";
 
 function App() {
@@ -40,6 +45,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="sup" element={<DispatchComponent />} />
           <Route path="history-transaction" element={<HistoryTransaction />} />
           <Route path="manage-products" element={<ManageProduct />} />
           <Route path="product/:id" element={<ProductDetail />} />

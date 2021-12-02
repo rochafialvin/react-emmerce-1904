@@ -9,6 +9,7 @@ const init = {
 // reducer tidak boleh me-return undefiend
 // saat pertama kali running, state akan berisi undefiend, karena tidak boleh me return undefiend maka diberi default value
 const authReducer = (state = init, action) => {
+  console.log("authReducer", action);
   /*
     {
       type: "LOGIN_SUCCESS",
