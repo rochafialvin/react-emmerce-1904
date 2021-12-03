@@ -6,7 +6,13 @@ import ListProduct from "./components/ListProduct";
 
 function Index() {
   const [products, setProducts] = useState([]); // 19
-  const [filteredProducts, setFilteredProducts] = useState([]); // sort : highPrice
+  const [filteredProducts, setFilteredProducts] = useState([]); // 19
+  const [sortedProducts, setSortedProducts] = useState([]); // 19 sort : lowet price
+  const [paginationState, setPaginationState] = useState({
+    page: 1,
+    maxPage: 0,
+    itemsPerPage: 5,
+  });
 
   const fetchProducts = async () => {
     try {
@@ -14,6 +20,11 @@ function Index() {
       const { data } = res;
       setProducts(data);
       setFilteredProducts(data);
+      setSortedProducts(data);
+      setPaginationState({
+        ...paginationState,
+        maxPage: Math.ceil(data.length / paginationState.itemsPerPage),
+      });
     } catch (error) {
       console.log(alert(error.message));
     }
@@ -34,6 +45,7 @@ function Index() {
     });
 
     setFilteredProducts(resultFilter);
+    setSortedProducts(resultFilter);
   };
 
   const sortProducts = (sortValue) => {
@@ -72,13 +84,9 @@ function Index() {
           }
         });
         break;
-
-      default:
-        // ??
-        break;
     }
 
-    setFilteredProducts(rawData);
+    setSortedProducts(rawData);
   };
 
   return (
@@ -87,8 +95,9 @@ function Index() {
         <ProductManager
           filterProducts={filterProducts}
           sortProducts={sortProducts}
+          paginationState={paginationState}
         />
-        <ListProduct products={filteredProducts} />
+        <ListProduct products={sortedProducts} />
       </div>
     </div>
   );
