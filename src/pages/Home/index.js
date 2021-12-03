@@ -44,6 +44,11 @@ function Index() {
       );
     });
 
+    setPaginationState({
+      ...paginationState,
+      page: 1,
+      lastPage: Math.ceil(resultFilter.length / paginationState.itemsPerPage),
+    });
     setFilteredProducts(resultFilter);
     setSortedProducts(resultFilter);
   };
