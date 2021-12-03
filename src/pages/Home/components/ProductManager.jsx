@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// props : filterState, setFilterState
+// props : filterProducts
 function ProductManager(props) {
   const [formState, setFormState] = useState({
     keyword: "",
@@ -11,22 +11,9 @@ function ProductManager(props) {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSortChange = (e) => {
-    console.log("handler sort");
-  };
-
   const btnSearchHandler = () => {
-    console.log("handler button");
+    props.filterProducts(formState);
   };
-
-  // const btnPrevPageHandler = () => {
-  //   if (page > 1) setPaginationState({ ...paginationState, page: page - 1 });
-  // };
-
-  // const btnNextPageHandler = () => {
-  //   if (page < maxPage)
-  //     setPaginationState({ ...paginationState, page: page + 1 });
-  // };
 
   return (
     <div className="col-3">
@@ -70,11 +57,7 @@ function ProductManager(props) {
         </div>
         <div className="card-body">
           <label className="mb-2">Sort by</label>
-          <select
-            name="sortBy"
-            className="form-control"
-            onChange={handleSortChange}
-          >
+          <select name="sortBy" className="form-control">
             <option value="">Default</option>
             <option value="lowPrice">Lowest Price</option>
             <option value="highPrice">Highest Price</option>
@@ -87,19 +70,9 @@ function ProductManager(props) {
       {/* Pagination */}
       <div className="mt-3">
         <div className="d-flex flex-row justify-content-between align-items-center">
-          <button
-            // onClick={btnPrevPageHandler}
-            className={`btn btn-dark `}
-          >
-            {"<"}
-          </button>
+          <button className={`btn btn-dark `}>{"<"}</button>
           <div className="text-center">Page 1 of 4</div>
-          <button
-            // onClick={btnNextPageHandler}
-            className={`btn btn-dark `}
-          >
-            {">"}
-          </button>
+          <button className={`btn btn-dark `}>{">"}</button>
         </div>
       </div>
     </div>
