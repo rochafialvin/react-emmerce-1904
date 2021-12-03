@@ -24,11 +24,13 @@ function Index() {
   }, []);
 
   const filterProducts = (formData) => {
-    // kaos hitam poloson ? poloson
     const resultFilter = products.filter((product) => {
       const productName = product.productName.toLowerCase();
       const keyword = formData.keyword.toLowerCase();
-      return productName.includes(keyword);
+      return (
+        productName.includes(keyword) &&
+        product.category.includes(formData.category)
+      );
     });
 
     setFilteredProducts(resultFilter);
