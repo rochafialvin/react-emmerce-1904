@@ -96,6 +96,7 @@ function Index() {
           filterProducts={filterProducts}
           sortProducts={sortProducts}
           paginationState={paginationState}
+          setPaginationState={setPaginationState}
         />
         <ListProduct products={sortedProducts} />
       </div>
