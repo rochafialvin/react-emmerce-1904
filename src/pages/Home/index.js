@@ -48,10 +48,6 @@ function Index() {
         break;
       case "az":
         rawData.sort((a, b) => {
-          // a : Kaos
-          // b : Celana
-          // b --> a
-
           if (a.productName < b.productName) {
             return -1;
           } else if (a.productName > b.productName) {
