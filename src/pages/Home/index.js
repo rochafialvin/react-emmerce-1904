@@ -8,6 +8,11 @@ function Index() {
   const [products, setProducts] = useState([]); // 19
   const [filteredProducts, setFilteredProducts] = useState([]); // sort : highPrice
   const [sortedProducts, setSortedProducts] = useState([]); // sort : highPrice
+  const [paginationState, setPaginationState] = useState({
+    page: 1,
+    maxPage: 1,
+  });
+  const itemsPerPage = 5;
 
   const fetchProducts = async () => {
     try {
@@ -82,8 +87,14 @@ function Index() {
         <ProductManager
           filterProducts={filterProducts}
           sortProducts={sortProducts}
+          paginationState={paginationState}
+          setPaginationState={setPaginationState}
         />
-        <ListProduct products={sortedProducts} />
+        <ListProduct
+          products={sortedProducts}
+          paginationState={paginationState}
+          itemsPerPage={itemsPerPage}
+        />
       </div>
     </div>
   );

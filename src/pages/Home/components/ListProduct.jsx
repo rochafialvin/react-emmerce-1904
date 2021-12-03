@@ -5,7 +5,10 @@ import ProductCard from "../../../components/ProductCard";
 // props : products []
 function ListProduct(props) {
   const renderProducts = () => {
-    return props.products.map((product) => (
+    const startIndex = (props.paginationState.page - 1) * props.itemsPerPage;
+    const endIndex = startIndex + props.itemsPerPage;
+    const slicedTodos = props.products.slice(startIndex, endIndex);
+    return slicedTodos.map((product) => (
       <ProductCard key={product.id} product={product} />
     ));
   };
