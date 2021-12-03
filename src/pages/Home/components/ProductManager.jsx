@@ -2,10 +2,6 @@ import React, { useState } from "react";
 
 // props : filterState, setFilterState
 function ProductManager(props) {
-  const { filterState, setFilterState, paginationState, setPaginationState } =
-    props;
-  const { page, maxPage } = paginationState;
-
   const [formState, setFormState] = useState({
     keyword: "",
     category: "",
@@ -16,22 +12,21 @@ function ProductManager(props) {
   };
 
   const handleSortChange = (e) => {
-    setFilterState({ ...filterState, [e.target.name]: e.target.value });
+    console.log("handler sort");
   };
 
   const btnSearchHandler = () => {
-    setFilterState({ ...filterState, ...formState });
-    setPaginationState({ ...paginationState, page: 1 });
+    console.log("handler button");
   };
 
-  const btnPrevPageHandler = () => {
-    if (page > 1) setPaginationState({ ...paginationState, page: page - 1 });
-  };
+  // const btnPrevPageHandler = () => {
+  //   if (page > 1) setPaginationState({ ...paginationState, page: page - 1 });
+  // };
 
-  const btnNextPageHandler = () => {
-    if (page < maxPage)
-      setPaginationState({ ...paginationState, page: page + 1 });
-  };
+  // const btnNextPageHandler = () => {
+  //   if (page < maxPage)
+  //     setPaginationState({ ...paginationState, page: page + 1 });
+  // };
 
   return (
     <div className="col-3">
@@ -93,17 +88,15 @@ function ProductManager(props) {
       <div className="mt-3">
         <div className="d-flex flex-row justify-content-between align-items-center">
           <button
-            onClick={btnPrevPageHandler}
-            className={`btn btn-dark ${page === 1 && "disabled"}`}
+            // onClick={btnPrevPageHandler}
+            className={`btn btn-dark `}
           >
             {"<"}
           </button>
-          <div className="text-center">
-            Page {page} of {maxPage}
-          </div>
+          <div className="text-center">Page 1 of 4</div>
           <button
-            onClick={btnNextPageHandler}
-            className={`btn btn-dark ${page === maxPage && "disabled"}`}
+            // onClick={btnNextPageHandler}
+            className={`btn btn-dark `}
           >
             {">"}
           </button>
