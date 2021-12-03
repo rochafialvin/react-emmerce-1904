@@ -10,7 +10,7 @@ function Index() {
   const [sortedProducts, setSortedProducts] = useState([]); // 19 sort : lowet price
   const [paginationState, setPaginationState] = useState({
     page: 1,
-    maxPage: 0,
+    lastPage: 0,
     itemsPerPage: 5,
   });
 
@@ -23,7 +23,7 @@ function Index() {
       setSortedProducts(data);
       setPaginationState({
         ...paginationState,
-        maxPage: Math.ceil(data.length / paginationState.itemsPerPage),
+        lastPage: Math.ceil(data.length / paginationState.itemsPerPage),
       });
     } catch (error) {
       console.log(alert(error.message));
@@ -98,7 +98,10 @@ function Index() {
           paginationState={paginationState}
           setPaginationState={setPaginationState}
         />
-        <ListProduct products={sortedProducts} />
+        <ListProduct
+          products={sortedProducts}
+          paginationState={paginationState}
+        />
       </div>
     </div>
   );

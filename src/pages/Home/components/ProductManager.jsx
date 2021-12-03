@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // props : filterProducts, sortProducts, paginationState, setPaginationState
 function ProductManager(props) {
   const { paginationState, setPaginationState } = props;
-  const { page, maxPage } = paginationState;
+  const { page, lastPage } = paginationState;
 
   const [formState, setFormState] = useState({
     keyword: "",
@@ -95,11 +95,11 @@ function ProductManager(props) {
             {"<"}
           </button>
           <div className="text-center">
-            Page {page} of {maxPage}
+            Page {page} of {lastPage}
           </div>
           <button
             onClick={btnNextPageHandler}
-            className={`btn btn-dark ${page === maxPage && "disabled"} `}
+            className={`btn btn-dark ${page === lastPage && "disabled"} `}
           >
             {">"}
           </button>
