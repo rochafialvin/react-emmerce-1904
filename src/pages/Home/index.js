@@ -21,6 +21,10 @@ function Index() {
       setProducts(data);
       setFilteredProducts(data);
       setSortedProducts(data);
+      setPaginationState({
+        ...paginationState,
+        maxPage: Math.ceil(data.length / itemsPerPage),
+      });
     } catch (error) {
       console.log(alert(error.message));
     }

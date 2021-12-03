@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 // props : filterProducts, sortProducts
 function ProductManager(props) {
+  const { paginationState, setPaginationState } = props;
+  const { page, maxPage } = paginationState;
+
   const [formState, setFormState] = useState({
     keyword: "",
     category: "",
@@ -17,6 +20,15 @@ function ProductManager(props) {
 
   const selectSortHandler = (e) => {
     props.sortProducts(e.target.value);
+  };
+
+  const btnPrevPageHandler = () => {
+    if (page > 1) setPaginationState({ ...paginationState, page: page - 1 });
+  };
+
+  const btnNextPageHandler = () => {
+    if (page < maxPage)
+      setPaginationState({ ...paginationState, page: page + 1 });
   };
 
   return (
@@ -78,9 +90,15 @@ function ProductManager(props) {
       {/* Pagination */}
       <div className="mt-3">
         <div className="d-flex flex-row justify-content-between align-items-center">
-          <button className={`btn btn-dark `}>{"<"}</button>
-          <div className="text-center">Page 1 of 4</div>
-          <button className={`btn btn-dark `}>{">"}</button>
+          <button onClick={btnPrevPageHandler} className={`btn btn-dark `}>
+            {"<"}
+          </button>
+          <div className="text-center">
+            Page {page} of {maxPage}
+          </div>
+          <button onClick={btnNextPageHandler} className={`btn btn-dark `}>
+            {">"}
+          </button>
         </div>
       </div>
     </div>
