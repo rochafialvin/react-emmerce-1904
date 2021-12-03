@@ -7,6 +7,7 @@ import ListProduct from "./components/ListProduct";
 function Index() {
   const [products, setProducts] = useState([]); // 19
   const [filteredProducts, setFilteredProducts] = useState([]); // sort : highPrice
+  const [sortedProducts, setSortedProducts] = useState([]); // sort : highPrice
 
   const fetchProducts = async () => {
     try {
@@ -14,6 +15,7 @@ function Index() {
       const { data } = res;
       setProducts(data);
       setFilteredProducts(data);
+      setSortedProducts(data);
     } catch (error) {
       console.log(alert(error.message));
     }
@@ -74,7 +76,7 @@ function Index() {
         break;
     }
 
-    setFilteredProducts(rawData);
+    setSortedProducts(rawData);
   };
 
   return (
@@ -84,7 +86,7 @@ function Index() {
           filterProducts={filterProducts}
           sortProducts={sortProducts}
         />
-        <ListProduct products={filteredProducts} />
+        <ListProduct products={sortedProducts} />
       </div>
     </div>
   );
