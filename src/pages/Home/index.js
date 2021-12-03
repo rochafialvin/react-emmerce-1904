@@ -6,7 +6,7 @@ import ListProduct from "./components/ListProduct";
 
 function Index() {
   const [products, setProducts] = useState([]); // 19
-  const [filteredProducts, setFilteredProducts] = useState([]); // 19
+  const [filteredProducts, setFilteredProducts] = useState([]); // sort : highPrice
 
   const fetchProducts = async () => {
     try {
@@ -71,6 +71,10 @@ function Index() {
             return 0;
           }
         });
+        break;
+
+      default:
+        // ??
         break;
     }
 
