@@ -11,8 +11,8 @@ function Index() {
   const [paginationState, setPaginationState] = useState({
     page: 1,
     maxPage: 1,
+    itemsPerPage: 5,
   });
-  const itemsPerPage = 5;
 
   const fetchProducts = async () => {
     try {
@@ -23,7 +23,10 @@ function Index() {
       setSortedProducts(data);
       setPaginationState({
         ...paginationState,
-        maxPage: Math.ceil(data.length / itemsPerPage),
+        page: 1,
+        maxPage: data.length
+          ? Math.ceil(data.length / paginationState.itemsPerPage)
+          : 1,
       });
     } catch (error) {
       console.log(alert(error.message));
@@ -42,6 +45,14 @@ function Index() {
         productName.includes(keyword) &&
         product.category.includes(formData.category)
       );
+    });
+
+    setPaginationState({
+      ...paginationState,
+      page: 1,
+      maxPage: resultFilter.length
+        ? Math.ceil(resultFilter.length / paginationState.itemsPerPage)
+        : 1,
     });
 
     setFilteredProducts(resultFilter);
@@ -97,7 +108,6 @@ function Index() {
         <ListProduct
           products={sortedProducts}
           paginationState={paginationState}
-          itemsPerPage={itemsPerPage}
         />
       </div>
     </div>
