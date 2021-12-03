@@ -5,8 +5,8 @@ import ProductManager from "./components/ProductManager";
 import ListProduct from "./components/ListProduct";
 
 function Index() {
-  const [products, setProducts] = useState([]); // 20
-  const [filteredProducts, setFilteredProducts] = useState([]); // 20
+  const [products, setProducts] = useState([]); // 19
+  const [filteredProducts, setFilteredProducts] = useState([]); // 19
 
   const fetchProducts = async () => {
     try {
@@ -36,10 +36,54 @@ function Index() {
     setFilteredProducts(resultFilter);
   };
 
+  const sortProducts = (sortValue) => {
+    const rawData = [...filteredProducts];
+
+    switch (sortValue) {
+      case "lowPrice":
+        rawData.sort((a, b) => a.price - b.price);
+        break;
+      case "highPrice":
+        rawData.sort((a, b) => b.price - a.price);
+        break;
+      case "az":
+        rawData.sort((a, b) => {
+          // a : Kaos
+          // b : Celana
+          // b --> a
+
+          if (a.productName < b.productName) {
+            return -1;
+          } else if (a.productName > b.productName) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+      case "za":
+        rawData.sort((a, b) => {
+          if (a.productName < b.productName) {
+            return 1;
+          } else if (a.productName > b.productName) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+    }
+
+    setFilteredProducts(rawData);
+  };
+
   return (
     <div className="container mt-5">
       <div className="row">
-        <ProductManager filterProducts={filterProducts} />
+        <ProductManager
+          filterProducts={filterProducts}
+          sortProducts={sortProducts}
+        />
         <ListProduct products={filteredProducts} />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// props : filterProducts
+// props : filterProducts, sortProducts
 function ProductManager(props) {
   const [formState, setFormState] = useState({
     keyword: "",
@@ -13,6 +13,10 @@ function ProductManager(props) {
 
   const btnSearchHandler = () => {
     props.filterProducts(formState);
+  };
+
+  const selectSortHandler = (e) => {
+    props.sortProducts(e.target.value);
   };
 
   return (
@@ -57,7 +61,11 @@ function ProductManager(props) {
         </div>
         <div className="card-body">
           <label className="mb-2">Sort by</label>
-          <select name="sortBy" className="form-control">
+          <select
+            name="sortBy"
+            className="form-control"
+            onChange={selectSortHandler}
+          >
             <option value="">Default</option>
             <option value="lowPrice">Lowest Price</option>
             <option value="highPrice">Highest Price</option>
