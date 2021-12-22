@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { loginAction } from "../../store/actions";
-import axios from "../../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
